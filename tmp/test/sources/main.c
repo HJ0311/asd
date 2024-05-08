@@ -6,22 +6,11 @@
 /*   By: hyehan <hyehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 17:30:02 by hyehan            #+#    #+#             */
-/*   Updated: 2024/05/08 15:52:07 by hyehan           ###   ########seoul.kr  */
+/*   Updated: 2024/05/08 17:36:01 by hyehan           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-t_token	n1;
-t_token	n2;
-t_token	n3;
-t_token	n4;
-t_token	n5;
-t_token	n6;
-t_token	n7;
-t_token	n8;
-t_token	n9;
-t_token	n10;
 
 void	check(void)
 {
@@ -138,6 +127,28 @@ void	get_input(t_shell *shell)
 	// shell->root = &n3;
 
 
+	t_token	*n1;
+	t_token	*n2;
+	t_token	*n3;
+	t_token	*n4;
+	t_token	*n5;
+	t_token	*n6;
+	t_token	*n7;
+	t_token	*n8;
+	t_token	*n9;
+	t_token	*n10;
+
+	n1 = malloc(sizeof(t_token));
+	n2 = malloc(sizeof(t_token));
+	n3 = malloc(sizeof(t_token));
+	n4 = malloc(sizeof(t_token));
+	n5 = malloc(sizeof(t_token));
+	n6 = malloc(sizeof(t_token));
+	n7 = malloc(sizeof(t_token));
+	n8 = malloc(sizeof(t_token));
+	n9 = malloc(sizeof(t_token));
+	n10 = malloc(sizeof(t_token));
+
 
 
 
@@ -171,16 +182,16 @@ void	get_input(t_shell *shell)
 	content2.cmd = cmd2;
 	content3.cmd = cmd3;
 
-	n1 = (t_token){COMMAND, &content1, NULL, NULL};
-	n2 = (t_token){PHRASE, NULL, &n1, NULL};
-	n3 = (t_token){COMMAND, &content2, NULL, NULL};
-	n4 = (t_token){PHRASE, NULL, &n3, NULL};
-	n5 = (t_token){COMMAND, &content3, NULL, NULL};
-	n6 = (t_token){PHRASE, NULL, &n5, NULL};
-	n7 = (t_token){PIPE, NULL, &n6, NULL};
-	n8 = (t_token){PIPE, NULL, &n4, &n7};
-	n9 = (t_token){PIPE, NULL, &n2, &n8};
+	*n1 = (t_token){COMMAND, &content1, NULL, NULL};
+	*n2 = (t_token){PHRASE, NULL, n1, NULL};
+	*n3 = (t_token){COMMAND, &content2, NULL, NULL};
+	*n4 = (t_token){PHRASE, NULL, n3, NULL};
+	*n5 = (t_token){COMMAND, &content3, NULL, NULL};
+	*n6 = (t_token){PHRASE, NULL, n5, NULL};
+	*n7 = (t_token){PIPE, NULL, n6, NULL};
+	*n8 = (t_token){PIPE, NULL, n4, n7};
+	*n9 = (t_token){PIPE, NULL, n2, n8};
 	shell->cmd_num = 3;
-	shell->root = &n9;
+	shell->root = n9;
 	// ft_printf("%s\n", shell->root->left->left->content->cmd[0]);
 }

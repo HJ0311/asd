@@ -6,7 +6,7 @@
 /*   By: hyehan <hyehan@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 15:11:30 by hyehan            #+#    #+#             */
-/*   Updated: 2024/05/08 16:29:30 by hyehan           ###   ########seoul.kr  */
+/*   Updated: 2024/05/08 17:51:02 by hyehan           ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,16 @@ void	dup2_exe(t_shell *shell)
 			exit(1);
 		close(shell->prev_fd);
 	}
-	if (dup2(shell->curr_pipe[1], STDOUT_FILENO) < 0)
-		exit(1);
+	if (shell->idx == shell->cmd_num - 1)
+	{
+		if (dup2(shell->origin_out, STDOUT_FILENO) < 0)
+			exit(1);
+	}
+	else
+	{
+		if (dup2(shell->curr_pipe[1], STDOUT_FILENO) < 0)
+			exit(1);
+	}
 }
 
 void	close_pipe(t_shell *shell)
